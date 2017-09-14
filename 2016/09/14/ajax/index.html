@@ -5,17 +5,17 @@
   
   <title>ajax | raining-blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="你好，欢迎来到我的个人技术博客">
+  <meta name="description" content="ajax的使用  $.ajaxSetup({     headers: {         &amp;apos;X-CSRF-TOKEN&amp;apos;: &amp;apos;{{ csrf_token() }}&amp;apos;     } }); $(function () {     $(&amp;apos;#name&amp;apos;).focus();     var reg = $(&amp;quot;#register&amp;quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ajax">
 <meta property="og:url" content="http://raining-blog.com/2016/09/14/ajax/index.html">
 <meta property="og:site_name" content="raining-blog">
-<meta property="og:description" content="你好，欢迎来到我的个人技术博客">
+<meta property="og:description" content="ajax的使用  $.ajaxSetup({     headers: {         &amp;apos;X-CSRF-TOKEN&amp;apos;: &amp;apos;{{ csrf_token() }}&amp;apos;     } }); $(function () {     $(&amp;apos;#name&amp;apos;).focus();     var reg = $(&amp;quot;#register&amp;quot;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-14T08:57:48.261Z">
+<meta property="og:updated_time" content="2017-09-14T09:31:04.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajax">
-<meta name="twitter:description" content="你好，欢迎来到我的个人技术博客">
+<meta name="twitter:description" content="ajax的使用  $.ajaxSetup({     headers: {         &amp;apos;X-CSRF-TOKEN&amp;apos;: &amp;apos;{{ csrf_token() }}&amp;apos;     } }); $(function () {     $(&amp;apos;#name&amp;apos;).focus();     var reg = $(&amp;quot;#register&amp;quot;">
   
     <link rel="alternate" href="/atom.xml" title="raining-blog" type="application/atom+xml">
   
@@ -86,12 +86,145 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>你好，欢迎来到我的个人技术博客</p>
+        <p>ajax的使用</p>
+<hr>
+<pre><code>$.ajaxSetup({
+    headers: {
+        &apos;X-CSRF-TOKEN&apos;: &apos;{{ csrf_token() }}&apos;
+    }
+});
+$(function () {
+    $(&apos;#name&apos;).focus();
+    var reg = $(&quot;#register&quot;).Validform({
+        tiptype: function (msg, o, cssctl) {
+            if (!o.obj.is(&quot;form&quot;)) {
+                var objtip = o.obj.siblings(&quot;.Validform_label&quot;);
+                cssctl(objtip, o.type);
+                objtip.text(msg);
+            }
+        },
+        label: &quot;.Validform_label&quot;,
+        showAllError: true,
+        ajaxPost: true,
+        datatype: {
+            &quot;a11&quot;: /^1[34578]\d{9}$/
+        }
+    });
+
+    reg.addRule([
+        {
+            ele: &quot;#mobile&quot;,
+            datatype: &quot;a11&quot;,
+            nullmsg: &quot;请输入手机号！&quot;,
+            errormsg: &quot;请正确输入手机号！&quot;
+        },
+        {
+            ele: &quot;#captcha&quot;,
+            datatype: &quot;n4-6&quot;,
+            nullmsg: &quot;请输入验证码！&quot;,
+            errormsg: &quot;请正确输入验证码！&quot;
+        },
+        {
+            ele: &quot;#password&quot;,
+            datatype: &quot;*6-12&quot;,
+            nullmsg: &quot;请输入密码！&quot;,
+            errormsg: &quot;请输入6-12个字符密码&quot;
+        },
+        {
+            ele: &quot;#rep&quot;,
+            datatype: &quot;*&quot;,
+            nullmsg: &quot;请再次输入密码！&quot;,
+            errormsg: &quot;两次输入密码不正确&quot;,
+            recheck: &quot;userpassword&quot;
+        },
+        {
+            ele: &quot;#num&quot;,
+            datatype: &quot;*&quot;,
+            nullmsg: &quot;请输入验证码！&quot;,
+            errormsg: &quot;验证码格式不正确&quot;
+        }
+    ]);
+
+    var regis = $(&quot;#register&quot;).Validform();
+
+
+    var phone = $(&apos;#mobile&apos;).val();
+
+    //点击刷新验证码
+    $(&apos;.photo&gt;img&apos;).click(function () {
+        var timestamp = new Date().getTime();
+        $(this).attr(&quot;src&quot;, &apos;/captcha/default?&apos; + timestamp);
+    });
+    //倒计时60s
+    var wait = 60;
+
+    function time(o) {
+        if (wait === 0) {
+            o.removeAttribute(&quot;disabled&quot;);
+            o.value = &quot;发送验证码&quot;;
+            wait = 60;
+        } else {
+            o.setAttribute(&quot;disabled&quot;, true);
+            o.value = &quot;重新发送(&quot; + wait + &quot;)&quot;;
+            wait--;
+            setTimeout(function () {
+                time(o);
+            }, 1000)
+        }
+    }
+
+    $(&quot;input[name=phone]&quot;).bind(&apos;input porpertychange&apos;, function () {
+        var regex = /^1[34578]\d{9}$/;
+        if (regex.test($(&apos;input[name=phone]&apos;).val())) {
+            $(&apos;#sent_message_code&apos;).attr(&apos;disabled&apos;, false);
+        }
+    });
+    $(&apos;#sent_message_code&apos;).click(function () {
+        var obj = this;
+        var phone = $(&apos;input[name=phone]&apos;).val();
+        $.ajax({
+            type: &apos;POST&apos;,
+            url: &apos;/login/send&apos;,
+            dataType: &apos;json&apos;,
+            data: {phone: phone},
+            async: true,
+            success: function (data) {
+                if (data.code === 0) {
+                    time(obj);
+                    $(&apos;#div-errors&apos;).hide();
+                } else {
+                    $(&apos;#error-tip&apos;).text(data.msg);
+                    $(&apos;#div-errors&apos;).show();
+                    console.log(data);
+                }
+            }
+        });
+    });
+    $(&apos;#submit-btn&apos;).click(function () {
+        $.ajax({
+            type: &apos;POST&apos;,
+            url: &apos;/login/adduser&apos;,
+            dataType: &apos;json&apos;,
+            data: $(&apos;#register&apos;).serializeJson(),
+            async: true,
+            success: function (data) {
+                if (data.code === 0) {  //注册成功 跳转到成功页面
+                    location.href = &apos;/login/rsc&apos;;
+                } else {
+                    $(&apos;#error-tip&apos;).text(data.msg);
+                    $(&apos;#div-errors&apos;).show();
+                    console.log(data);
+                }
+            }
+        });
+    });
+})
+</code></pre><hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/09/14/ajax/" data-id="cj7k8uxz80000kwv82vrnmbr2" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/09/14/ajax/" data-id="cj7k99p0u0000ygv8hz2mzdyo" class="article-share-link">Share</a>
       
       
     </footer>

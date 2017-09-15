@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="raining-blog">
 <meta property="og:description" content="git的使用git的命令行 git checkout -b user   创建并切换user分支 git branch user        创建分支 git checkout user      切换分支 ------------------------------------------ git last               查看最后一条记录 git log">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-15T05:29:10.575Z">
+<meta property="og:updated_time" content="2017-09-15T05:35:13.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git">
 <meta name="twitter:description" content="git的使用git的命令行 git checkout -b user   创建并切换user分支 git branch user        创建分支 git checkout user      切换分支 ------------------------------------------ git last               查看最后一条记录 git log">
@@ -106,13 +106,26 @@ git log                查看分支的合并情况
 
 git br -d aa           删除aa分支  
 -------------------------------------------
-git pull               推送代码
+git pull               抓取代码
+</code></pre><hr>
+<h3 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h3><hr>
+<pre><code>查看远程库信息，使用git remote -v；
+
+本地新建的分支如果不推送到远程，对其他人就是不可见的；
+
+从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+
+在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+
+建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+
+从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
 </code></pre><hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/09/15/git/" data-id="cj7lg3h350002tsv8wjvv9pdu" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/09/15/git/" data-id="cj7lgbe0o0000fov8dq2xz45l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -120,15 +133,6 @@ git pull               推送代码
   
     
 <nav id="article-nav">
-  
-    <a href="/2016/09/19/welcome/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          图片验证码刷新
-        
-      </div>
-    </a>
   
   
     <a href="/2016/09/14/ajax/" id="article-nav-older" class="article-nav-link-wrap">
@@ -157,7 +161,7 @@ git pull               推送代码
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a></li></ul>
     </div>
   </div>
 
@@ -170,15 +174,15 @@ git pull               推送代码
       <ul>
         
           <li>
-            <a href="/2016/09/19/welcome/">图片验证码刷新</a>
-          </li>
-        
-          <li>
             <a href="/2016/09/15/git/">git</a>
           </li>
         
           <li>
             <a href="/2016/09/14/ajax/">ajax</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/08/welcome/">Welcome</a>
           </li>
         
       </ul>

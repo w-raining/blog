@@ -62,6 +62,102 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-iscroll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/18/iscroll/" class="article-date">
+  <time datetime="2016-09-18T05:39:42.000Z" itemprop="datePublished">2016-09-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/18/iscroll/">iscroll</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="iscroll的使用"><a href="#iscroll的使用" class="headerlink" title="iscroll的使用"></a>iscroll的使用</h2><h4 id="https-github-com-cubiq-iscroll"><a href="#https-github-com-cubiq-iscroll" class="headerlink" title="https://github.com/cubiq/iscroll"></a><a href="https://github.com/cubiq/iscroll" target="_blank" rel="external">https://github.com/cubiq/iscroll</a></h4><hr>
+<pre><code>$(function () {
+       ----初始化----
+       var myScroll = new IScroll(&apos;#div-iscroll&apos;, {
+           mouseWheel: true,   监听鼠标滚轮事件
+           scrollbars: true,   显示滚动条 激活该事件
+           probeType: 2,   总是执行scroll事件，除了动量和反弹之外  探针行为
+           preventDefault: false   禁止默认行为
+       });
+
+       ----自定义滚轮事件----
+           每次内容停止滚动时，代码执行
+       myScroll.on(&quot;scrollEnd&quot;, function () {
+           console.log(&apos;y:&apos;, this.y, this.distY, this.wrapperHeight, this.pointY);
+           if (this.distY &lt; 0) {
+               nextPage();
+           }
+       });
+       var page = 0;
+       var num = 20;
+       var end = false;
+       var getting = false;
+
+       function nextPage() {
+           if (end || getting) {
+               return;
+           }
+           page += 1;
+           console.log(&apos;/user/listrecommend&apos;, &apos;page&apos;, page, &apos;end&apos;, end);
+           getting = true;
+           $.ajax({
+               url: &apos;/user/listrecommend?page=&apos; + page,
+               method: &apos;get&apos;,
+               success: function (data) {
+                   if (data.code != 0) {
+                       console.log(&apos;/user/listrecommend error&apos;, data.code);
+                       return;
+                   }
+                   console.log(&apos;/user/listrecommend&apos;, data.list.length);
+                   end = data.list.length &lt; num ? true : false;
+                   $.each(data.list, function (idx, val) {
+                       var el = &apos;&lt;tr class=&quot;cont&quot;&gt; \
+                                       &lt;td&gt;&apos; + val.uid + &apos;&lt;/td&gt; \
+                                       &lt;td&gt;&apos; + val.name + &apos;&lt;/td&gt; \
+                                       &lt;td&gt;&apos; + val.created_at + &apos;&lt;/td&gt; \
+                                     &lt;/tr&gt;&apos;;
+                       $(&apos;#tbody-recommend&apos;).append(el);
+                       setTimeout(function () {
+                           myScroll.refresh();
+                       }, 1000)
+                   });
+               }
+           });
+
+           getting = false;
+       }
+
+       nextPage();
+   });
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://raining-blog.com/2016/09/18/iscroll/" data-id="cj7lh27xb0001w8v8q9irwlrk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/09/15/git/" class="article-date">
@@ -123,7 +219,7 @@ git pull               抓取代码
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/09/15/git/" data-id="cj7lgearx000184v8sldb8z37" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/09/15/git/" data-id="cj7lh27x40000w8v8txx1496a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -292,7 +388,7 @@ $(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/09/14/ajax/" data-id="cj7lgearx000084v853f5tk4x" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/09/14/ajax/" data-id="cj7lh27xc0002w8v8hkjx05vi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -328,7 +424,7 @@ $(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/08/08/welcome/" data-id="cj7lgearx000284v80ibfd7tm" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/08/08/welcome/" data-id="cj7lh27xd0003w8v89agcvdcm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -366,6 +462,10 @@ $(function () {
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/09/18/iscroll/">iscroll</a>
+          </li>
         
           <li>
             <a href="/2016/09/15/git/">git</a>

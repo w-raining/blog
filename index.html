@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-touch" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-photo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/27/touch/" class="article-date">
-  <time datetime="2017-09-27T01:10:04.526Z" itemprop="datePublished">2017-09-27</time>
+    <a href="/2016/10/05/photo/" class="article-date">
+  <time datetime="2016-10-05T12:05:52.000Z" itemprop="datePublished">2016-10-05</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/27/touch/">touch</a>
+      <a class="article-title" href="/2016/10/05/photo/">photo</a>
     </h1>
   
 
@@ -84,37 +84,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="touch-js"><a href="#touch-js" class="headerlink" title="touch.js"></a>touch.js</h2><p><a href="https://github.com/Martin0809/touch.js" target="_blank" rel="external">https://github.com/Martin0809/touch.js</a></p>
-<pre><code> 1.依赖
-
-在调用该方法前，请引用的依赖文件
-
-&lt;script src=&quot;touch.js&quot;&gt;&lt;/script&gt;
-2.调用
-
-touch方法绑定在DOM对象上，调用时使用
-
-document.getElementById(&apos;id&apos;).touch({
-    tap: function () {
-        alert(&apos;tap&apos;);
-    }
-});
-3.参数
-
-tap：(function) 触发点击事件时执行该方法
-
-swipeUp：(function) 触发上滑时执行该方法
-
-swipeDown：(function) 触发下滑事件时执行该方法
-
-swipeLeft：(function) 触发左滑事件时执行该方法
-
-swipeRight：(function) 触发右滑事件时执行该方法
-</code></pre>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2017/09/27/touch/" data-id="cj82cbsme0004i8v8n3hkmmeb" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/10/05/photo/" data-id="cj82domvt0000osv8vjv59rw5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -126,8 +100,8 @@ swipeRight：(function) 触发右滑事件时执行该方法
   
     <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/27/git/" class="article-date">
-  <time datetime="2017-09-27T01:10:04.510Z" itemprop="datePublished">2017-09-27</time>
+    <a href="/2016/09/27/git/" class="article-date">
+  <time datetime="2016-09-27T07:50:45.000Z" itemprop="datePublished">2016-09-27</time>
 </a>
     
   </div>
@@ -138,7 +112,7 @@ swipeRight：(function) 触发右滑事件时执行该方法
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/27/git/">git</a>
+      <a class="article-title" href="/2016/09/27/git/">git</a>
     </h1>
   
 
@@ -185,7 +159,103 @@ git pull               抓取代码
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2017/09/27/git/" data-id="cj82cbsm00000i8v84kfrefx6" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/09/27/git/" data-id="cj82domvt0004osv8lxpx0nyi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iscroll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/25/iscroll/" class="article-date">
+  <time datetime="2016-09-25T10:50:30.000Z" itemprop="datePublished">2016-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/25/iscroll/">iscroll</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="iscroll的使用"><a href="#iscroll的使用" class="headerlink" title="iscroll的使用"></a>iscroll的使用</h2><h4 id="https-github-com-cubiq-iscroll"><a href="#https-github-com-cubiq-iscroll" class="headerlink" title="https://github.com/cubiq/iscroll"></a><a href="https://github.com/cubiq/iscroll" target="_blank" rel="external">https://github.com/cubiq/iscroll</a></h4><hr>
+<pre><code>$(function () {
+       ----初始化----
+       var myScroll = new IScroll(&apos;#div-iscroll&apos;, {
+           mouseWheel: true,   监听鼠标滚轮事件
+           scrollbars: true,   显示滚动条 激活该事件
+           probeType: 2,   总是执行scroll事件，除了动量和反弹之外  探针行为
+           preventDefault: false   禁止默认行为
+       });
+
+       ----自定义滚轮事件----
+           每次内容停止滚动时，代码执行
+       myScroll.on(&quot;scrollEnd&quot;, function () {
+           console.log(&apos;y:&apos;, this.y, this.distY, this.wrapperHeight, this.pointY);
+           if (this.distY &lt; 0) {
+               nextPage();
+           }
+       });
+       var page = 0;
+       var num = 20;
+       var end = false;
+       var getting = false;
+
+       function nextPage() {
+           if (end || getting) {
+               return;
+           }
+           page += 1;
+           console.log(&apos;/user/listrecommend&apos;, &apos;page&apos;, page, &apos;end&apos;, end);
+           getting = true;
+           $.ajax({
+               url: &apos;/user/listrecommend?page=&apos; + page,
+               method: &apos;get&apos;,
+               success: function (data) {
+                   if (data.code != 0) {
+                       console.log(&apos;/user/listrecommend error&apos;, data.code);
+                       return;
+                   }
+                   console.log(&apos;/user/listrecommend&apos;, data.list.length);
+                   end = data.list.length &lt; num ? true : false;
+                   $.each(data.list, function (idx, val) {
+                       var el = &apos;&lt;tr class=&quot;cont&quot;&gt; \
+                                       &lt;td&gt;&apos; + val.uid + &apos;&lt;/td&gt; \
+                                       &lt;td&gt;&apos; + val.name + &apos;&lt;/td&gt; \
+                                       &lt;td&gt;&apos; + val.created_at + &apos;&lt;/td&gt; \
+                                     &lt;/tr&gt;&apos;;
+                       $(&apos;#tbody-recommend&apos;).append(el);
+                       setTimeout(function () {
+                           myScroll.refresh();
+                       }, 1000)
+                   });
+               }
+           });
+
+           getting = false;
+       }
+
+       nextPage();
+   });
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://raining-blog.com/2016/09/25/iscroll/" data-id="cj82domvt0002osv8r3ll59ug" class="article-share-link">Share</a>
       
       
     </footer>
@@ -197,8 +267,8 @@ git pull               抓取代码
   
     <article id="post-ajax" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/27/ajax/" class="article-date">
-  <time datetime="2017-09-27T01:10:04.510Z" itemprop="datePublished">2017-09-27</time>
+    <a href="/2016/08/25/ajax/" class="article-date">
+  <time datetime="2016-08-25T13:15:56.000Z" itemprop="datePublished">2016-08-25</time>
 </a>
     
   </div>
@@ -209,7 +279,7 @@ git pull               抓取代码
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/27/ajax/">ajax</a>
+      <a class="article-title" href="/2016/08/25/ajax/">ajax</a>
     </h1>
   
 
@@ -354,7 +424,7 @@ $(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2017/09/27/ajax/" data-id="cj82cbsm60001i8v86phm5lpo" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/08/25/ajax/" data-id="cj82domvt0001osv8smlpb0f5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -364,10 +434,10 @@ $(function () {
 
 
   
-    <article id="post-welcome" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-touch" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/27/welcome/" class="article-date">
-  <time datetime="2017-09-27T01:10:04.510Z" itemprop="datePublished">2017-09-27</time>
+    <a href="/2016/08/20/touch/" class="article-date">
+  <time datetime="2016-08-20T02:30:18.000Z" itemprop="datePublished">2016-08-20</time>
 </a>
     
   </div>
@@ -378,7 +448,7 @@ $(function () {
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/27/welcome/">Welcome</a>
+      <a class="article-title" href="/2016/08/20/touch/">touch</a>
     </h1>
   
 
@@ -386,107 +456,37 @@ $(function () {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h2><h4 id="大家好，欢迎大家来到曼珠沙华的博客，这里有我平时写代码的一些感想，希望可以和朋友们分享"><a href="#大家好，欢迎大家来到曼珠沙华的博客，这里有我平时写代码的一些感想，希望可以和朋友们分享" class="headerlink" title="大家好，欢迎大家来到曼珠沙华的博客，这里有我平时写代码的一些感想，希望可以和朋友们分享"></a>大家好，欢迎大家来到曼珠沙华的博客，这里有我平时写代码的一些感想，希望可以和朋友们分享</h4>
+        <h2 id="touch-js"><a href="#touch-js" class="headerlink" title="touch.js"></a>touch.js</h2><p><a href="https://github.com/Martin0809/touch.js" target="_blank" rel="external">https://github.com/Martin0809/touch.js</a></p>
+<pre><code> 1.依赖
+
+在调用该方法前，请引用的依赖文件
+
+&lt;script src=&quot;touch.js&quot;&gt;&lt;/script&gt;
+2.调用
+
+touch方法绑定在DOM对象上，调用时使用
+
+document.getElementById(&apos;id&apos;).touch({
+    tap: function () {
+        alert(&apos;tap&apos;);
+    }
+});
+3.参数
+
+tap：(function) 触发点击事件时执行该方法
+
+swipeUp：(function) 触发上滑时执行该方法
+
+swipeDown：(function) 触发下滑事件时执行该方法
+
+swipeLeft：(function) 触发左滑事件时执行该方法
+
+swipeRight：(function) 触发右滑事件时执行该方法
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2017/09/27/welcome/" data-id="cj82cbsmg0005i8v8fq012hbb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-iscroll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/27/iscroll/" class="article-date">
-  <time datetime="2017-09-27T01:10:04.495Z" itemprop="datePublished">2017-09-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/27/iscroll/">iscroll</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="iscroll的使用"><a href="#iscroll的使用" class="headerlink" title="iscroll的使用"></a>iscroll的使用</h2><h4 id="https-github-com-cubiq-iscroll"><a href="#https-github-com-cubiq-iscroll" class="headerlink" title="https://github.com/cubiq/iscroll"></a><a href="https://github.com/cubiq/iscroll" target="_blank" rel="external">https://github.com/cubiq/iscroll</a></h4><hr>
-<pre><code>$(function () {
-       ----初始化----
-       var myScroll = new IScroll(&apos;#div-iscroll&apos;, {
-           mouseWheel: true,   监听鼠标滚轮事件
-           scrollbars: true,   显示滚动条 激活该事件
-           probeType: 2,   总是执行scroll事件，除了动量和反弹之外  探针行为
-           preventDefault: false   禁止默认行为
-       });
-
-       ----自定义滚轮事件----
-           每次内容停止滚动时，代码执行
-       myScroll.on(&quot;scrollEnd&quot;, function () {
-           console.log(&apos;y:&apos;, this.y, this.distY, this.wrapperHeight, this.pointY);
-           if (this.distY &lt; 0) {
-               nextPage();
-           }
-       });
-       var page = 0;
-       var num = 20;
-       var end = false;
-       var getting = false;
-
-       function nextPage() {
-           if (end || getting) {
-               return;
-           }
-           page += 1;
-           console.log(&apos;/user/listrecommend&apos;, &apos;page&apos;, page, &apos;end&apos;, end);
-           getting = true;
-           $.ajax({
-               url: &apos;/user/listrecommend?page=&apos; + page,
-               method: &apos;get&apos;,
-               success: function (data) {
-                   if (data.code != 0) {
-                       console.log(&apos;/user/listrecommend error&apos;, data.code);
-                       return;
-                   }
-                   console.log(&apos;/user/listrecommend&apos;, data.list.length);
-                   end = data.list.length &lt; num ? true : false;
-                   $.each(data.list, function (idx, val) {
-                       var el = &apos;&lt;tr class=&quot;cont&quot;&gt; \
-                                       &lt;td&gt;&apos; + val.uid + &apos;&lt;/td&gt; \
-                                       &lt;td&gt;&apos; + val.name + &apos;&lt;/td&gt; \
-                                       &lt;td&gt;&apos; + val.created_at + &apos;&lt;/td&gt; \
-                                     &lt;/tr&gt;&apos;;
-                       $(&apos;#tbody-recommend&apos;).append(el);
-                       setTimeout(function () {
-                           myScroll.refresh();
-                       }, 1000)
-                   });
-               }
-           });
-
-           getting = false;
-       }
-
-       nextPage();
-   });
-</code></pre><hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2017/09/27/iscroll/" data-id="cj82cbsmc0003i8v860qj4738" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/08/20/touch/" data-id="cj82domvt0005osv8g7tv5j0h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -498,8 +498,8 @@ $(function () {
   
     <article id="post-swiper" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/27/swiper/" class="article-date">
-  <time datetime="2017-09-27T01:10:04.479Z" itemprop="datePublished">2017-09-27</time>
+    <a href="/2016/07/20/swiper/" class="article-date">
+  <time datetime="2016-07-20T09:05:18.000Z" itemprop="datePublished">2016-07-20</time>
 </a>
     
   </div>
@@ -510,7 +510,7 @@ $(function () {
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/27/swiper/">swiper</a>
+      <a class="article-title" href="/2016/07/20/swiper/">swiper</a>
     </h1>
   
 
@@ -524,7 +524,43 @@ swiper.min.js
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2017/09/27/swiper/" data-id="cj82cbsma0002i8v8etpe6sr0" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2016/07/20/swiper/" data-id="cj82domvt0003osv8b12dm70i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-welcome" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/15/welcome/" class="article-date">
+  <time datetime="2016-07-15T12:12:16.000Z" itemprop="datePublished">2016-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/15/welcome/">Welcome</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h2><h4 id="大家好，欢迎大家来到曼珠沙华的博客，这里有我平时写代码的一些感想，希望可以和朋友们分享"><a href="#大家好，欢迎大家来到曼珠沙华的博客，这里有我平时写代码的一些感想，希望可以和朋友们分享" class="headerlink" title="大家好，欢迎大家来到曼珠沙华的博客，这里有我平时写代码的一些感想，希望可以和朋友们分享"></a>大家好，欢迎大家来到曼珠沙华的博客，这里有我平时写代码的一些感想，希望可以和朋友们分享</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://raining-blog.com/2016/07/15/welcome/" data-id="cj82domvt0006osv8mluq6v0a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -551,7 +587,7 @@ swiper.min.js
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
     </div>
   </div>
 
@@ -564,23 +600,23 @@ swiper.min.js
       <ul>
         
           <li>
-            <a href="/2017/09/27/touch/">touch</a>
+            <a href="/2016/10/05/photo/">photo</a>
           </li>
         
           <li>
-            <a href="/2017/09/27/git/">git</a>
+            <a href="/2016/09/27/git/">git</a>
           </li>
         
           <li>
-            <a href="/2017/09/27/ajax/">ajax</a>
+            <a href="/2016/09/25/iscroll/">iscroll</a>
           </li>
         
           <li>
-            <a href="/2017/09/27/welcome/">Welcome</a>
+            <a href="/2016/08/25/ajax/">ajax</a>
           </li>
         
           <li>
-            <a href="/2017/09/27/iscroll/">iscroll</a>
+            <a href="/2016/08/20/touch/">touch</a>
           </li>
         
       </ul>

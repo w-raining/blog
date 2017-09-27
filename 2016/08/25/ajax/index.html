@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ajax | raining-blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ajax的使用 $.ajaxSetup({     headers: {         &amp;apos;X-CSRF-TOKEN&amp;apos;: &amp;apos;{{ csrf_token() }}&amp;apos;     } }); $(function () {     $(&amp;apos;#name&amp;apos;).focus();     var reg = $(&amp;quot;#register&amp;quot;)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax">
+<meta property="og:url" content="http://raining-blog.com/2016/08/25/ajax/index.html">
+<meta property="og:site_name" content="raining-blog">
+<meta property="og:description" content="ajax的使用 $.ajaxSetup({     headers: {         &amp;apos;X-CSRF-TOKEN&amp;apos;: &amp;apos;{{ csrf_token() }}&amp;apos;     } }); $(function () {     $(&amp;apos;#name&amp;apos;).focus();     var reg = $(&amp;quot;#register&amp;quot;)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-27T01:53:52.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ajax">
+<meta name="twitter:description" content="ajax的使用 $.ajaxSetup({     headers: {         &amp;apos;X-CSRF-TOKEN&amp;apos;: &amp;apos;{{ csrf_token() }}&amp;apos;     } }); $(function () {     $(&amp;apos;#name&amp;apos;).focus();     var reg = $(&amp;quot;#register&amp;quot;)">
+  
+    <link rel="alternate" href="/atom.xml" title="raining-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">raining-blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://raining-blog.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ajax" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/25/ajax/" class="article-date">
+  <time datetime="2016-08-25T13:15:56.000Z" itemprop="datePublished">2016-08-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ajax
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ajax的使用"><a href="#ajax的使用" class="headerlink" title="ajax的使用"></a>ajax的使用</h3><hr>
+<pre><code>$.ajaxSetup({
+    headers: {
+        &apos;X-CSRF-TOKEN&apos;: &apos;{{ csrf_token() }}&apos;
+    }
+});
+$(function () {
+    $(&apos;#name&apos;).focus();
+    var reg = $(&quot;#register&quot;).Validform({
+        tiptype: function (msg, o, cssctl) {
+            if (!o.obj.is(&quot;form&quot;)) {
+                var objtip = o.obj.siblings(&quot;.Validform_label&quot;);
+                cssctl(objtip, o.type);
+                objtip.text(msg);
+            }
+        },
+        label: &quot;.Validform_label&quot;,
+        showAllError: true,
+        ajaxPost: true,
+        datatype: {
+            &quot;a11&quot;: /^1[34578]\d{9}$/
+        }
+    });
+
+    reg.addRule([
+        {
+            ele: &quot;#mobile&quot;,
+            datatype: &quot;a11&quot;,
+            nullmsg: &quot;请输入手机号！&quot;,
+            errormsg: &quot;请正确输入手机号！&quot;
+        },
+        {
+            ele: &quot;#captcha&quot;,
+            datatype: &quot;n4-6&quot;,
+            nullmsg: &quot;请输入验证码！&quot;,
+            errormsg: &quot;请正确输入验证码！&quot;
+        },
+        {
+            ele: &quot;#password&quot;,
+            datatype: &quot;*6-12&quot;,
+            nullmsg: &quot;请输入密码！&quot;,
+            errormsg: &quot;请输入6-12个字符密码&quot;
+        },
+        {
+            ele: &quot;#rep&quot;,
+            datatype: &quot;*&quot;,
+            nullmsg: &quot;请再次输入密码！&quot;,
+            errormsg: &quot;两次输入密码不正确&quot;,
+            recheck: &quot;userpassword&quot;
+        },
+        {
+            ele: &quot;#num&quot;,
+            datatype: &quot;*&quot;,
+            nullmsg: &quot;请输入验证码！&quot;,
+            errormsg: &quot;验证码格式不正确&quot;
+        }
+    ]);
+
+    var regis = $(&quot;#register&quot;).Validform();
+
+
+    var phone = $(&apos;#mobile&apos;).val();
+
+    //点击刷新验证码
+    $(&apos;.photo&gt;img&apos;).click(function () {
+        var timestamp = new Date().getTime();
+        $(this).attr(&quot;src&quot;, &apos;/captcha/default?&apos; + timestamp);
+    });
+    //倒计时60s
+    var wait = 60;
+
+    function time(o) {
+        if (wait === 0) {
+            o.removeAttribute(&quot;disabled&quot;);
+            o.value = &quot;发送验证码&quot;;
+            wait = 60;
+        } else {
+            o.setAttribute(&quot;disabled&quot;, true);
+            o.value = &quot;重新发送(&quot; + wait + &quot;)&quot;;
+            wait--;
+            setTimeout(function () {
+                time(o);
+            }, 1000)
+        }
+    }
+
+    $(&quot;input[name=phone]&quot;).bind(&apos;input porpertychange&apos;, function () {
+        var regex = /^1[34578]\d{9}$/;
+        if (regex.test($(&apos;input[name=phone]&apos;).val())) {
+            $(&apos;#sent_message_code&apos;).attr(&apos;disabled&apos;, false);
+        }
+    });
+    $(&apos;#sent_message_code&apos;).click(function () {
+        var obj = this;
+        var phone = $(&apos;input[name=phone]&apos;).val();
+        $.ajax({
+            type: &apos;POST&apos;,
+            url: &apos;/login/send&apos;,
+            dataType: &apos;json&apos;,
+            data: {phone: phone},
+            async: true,
+            success: function (data) {
+                if (data.code === 0) {
+                    time(obj);
+                    $(&apos;#div-errors&apos;).hide();
+                } else {
+                    $(&apos;#error-tip&apos;).text(data.msg);
+                    $(&apos;#div-errors&apos;).show();
+                    console.log(data);
+                }
+            }
+        });
+    });
+    $(&apos;#submit-btn&apos;).click(function () {
+        $.ajax({
+            type: &apos;POST&apos;,
+            url: &apos;/login/adduser&apos;,
+            dataType: &apos;json&apos;,
+            data: $(&apos;#register&apos;).serializeJson(),
+            async: true,
+            success: function (data) {
+                if (data.code === 0) {  //注册成功 跳转到成功页面
+                    location.href = &apos;/login/rsc&apos;;
+                } else {
+                    $(&apos;#error-tip&apos;).text(data.msg);
+                    $(&apos;#div-errors&apos;).show();
+                    console.log(data);
+                }
+            }
+        });
+    });
+})
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://raining-blog.com/2016/08/25/ajax/" data-id="cj82domvt0001osv8smlpb0f5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/09/25/iscroll/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iscroll
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/20/touch/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">touch</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/10/05/photo/">photo</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/27/git/">git</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/25/iscroll/">iscroll</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/25/ajax/">ajax</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/20/touch/">touch</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

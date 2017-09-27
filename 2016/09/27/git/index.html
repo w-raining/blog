@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>git | raining-blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="git的命令行 git checkout -b user   创建并切换user分支 git branch user        创建分支 git checkout user      切换分支 ------------------------------------------ git last               查看最后一条记录 git log                用于查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git">
+<meta property="og:url" content="http://raining-blog.com/2016/09/27/git/index.html">
+<meta property="og:site_name" content="raining-blog">
+<meta property="og:description" content="git的命令行 git checkout -b user   创建并切换user分支 git branch user        创建分支 git checkout user      切换分支 ------------------------------------------ git last               查看最后一条记录 git log                用于查">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-27T01:53:12.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git">
+<meta name="twitter:description" content="git的命令行 git checkout -b user   创建并切换user分支 git branch user        创建分支 git checkout user      切换分支 ------------------------------------------ git last               查看最后一条记录 git log                用于查">
+  
+    <link rel="alternate" href="/atom.xml" title="raining-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">raining-blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://raining-blog.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/27/git/" class="article-date">
+  <time datetime="2016-09-27T07:50:45.000Z" itemprop="datePublished">2016-09-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="git的命令行"><a href="#git的命令行" class="headerlink" title="git的命令行"></a>git的命令行</h3><hr>
+<pre><code>git checkout -b user   创建并切换user分支
+git branch user        创建分支
+git checkout user      切换分支
+------------------------------------------
+git last               查看最后一条记录
+git log                用于查看历史纪录
+------------------------------------------
+解决冲突
+git status             查看状态 git会告诉我们冲突的文件
+git checkout -b aa     创建一个新的分支 并切换
+
+git add aa.html        提交
+git commit -m &apos;1.0&apos;
+git push   
+git branch -d aa
+git log                查看分支的合并情况
+
+git br -d aa           删除aa分支  
+-------------------------------------------
+git pull               抓取代码
+</code></pre><hr>
+<h3 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h3><hr>
+<pre><code>查看远程库信息，使用git remote -v；
+
+本地新建的分支如果不推送到远程，对其他人就是不可见的；
+
+从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+
+在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+
+建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+
+从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://raining-blog.com/2016/09/27/git/" data-id="cj82domvt0004osv8lxpx0nyi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/05/photo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          photo
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/25/iscroll/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iscroll</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/10/05/photo/">photo</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/27/git/">git</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/25/iscroll/">iscroll</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/25/ajax/">ajax</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/20/touch/">touch</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

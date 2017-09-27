@@ -64,8 +64,8 @@
   
     <article id="post-touch" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/22/touch/" class="article-date">
-  <time datetime="2016-09-22T08:47:58.000Z" itemprop="datePublished">2016-09-22</time>
+    <a href="/2017/09/27/touch/" class="article-date">
+  <time datetime="2017-09-27T01:10:04.526Z" itemprop="datePublished">2017-09-27</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/22/touch/">touch</a>
+      <a class="article-title" href="/2017/09/27/touch/">touch</a>
     </h1>
   
 
@@ -114,212 +114,7 @@ swipeRight：(function) 触发右滑事件时执行该方法
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/09/22/touch/" data-id="cj7lixcla000454v8ft5j1ir0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-swiper" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/20/swiper/" class="article-date">
-  <time datetime="2016-09-20T06:36:35.000Z" itemprop="datePublished">2016-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/20/swiper/">swiper</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Swiper的使用"><a href="#Swiper的使用" class="headerlink" title="Swiper的使用"></a>Swiper的使用</h2><h3 id="http-idangero-us-swiper-demos"><a href="#http-idangero-us-swiper-demos" class="headerlink" title="http://idangero.us/swiper/demos/"></a><a href="http://idangero.us/swiper/demos/" target="_blank" rel="external">http://idangero.us/swiper/demos/</a></h3><h4 id="引用两个文件"><a href="#引用两个文件" class="headerlink" title="引用两个文件"></a>引用两个文件</h4><pre><code>swiper.min.css  
-swiper.min.js
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/09/20/swiper/" data-id="cj7lixcl6000154v84hzmm0u2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-iscroll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/18/iscroll/" class="article-date">
-  <time datetime="2016-09-18T05:39:42.000Z" itemprop="datePublished">2016-09-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/18/iscroll/">iscroll</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="iscroll的使用"><a href="#iscroll的使用" class="headerlink" title="iscroll的使用"></a>iscroll的使用</h2><h4 id="https-github-com-cubiq-iscroll"><a href="#https-github-com-cubiq-iscroll" class="headerlink" title="https://github.com/cubiq/iscroll"></a><a href="https://github.com/cubiq/iscroll" target="_blank" rel="external">https://github.com/cubiq/iscroll</a></h4><hr>
-<pre><code>$(function () {
-       ----初始化----
-       var myScroll = new IScroll(&apos;#div-iscroll&apos;, {
-           mouseWheel: true,   监听鼠标滚轮事件
-           scrollbars: true,   显示滚动条 激活该事件
-           probeType: 2,   总是执行scroll事件，除了动量和反弹之外  探针行为
-           preventDefault: false   禁止默认行为
-       });
-
-       ----自定义滚轮事件----
-           每次内容停止滚动时，代码执行
-       myScroll.on(&quot;scrollEnd&quot;, function () {
-           console.log(&apos;y:&apos;, this.y, this.distY, this.wrapperHeight, this.pointY);
-           if (this.distY &lt; 0) {
-               nextPage();
-           }
-       });
-       var page = 0;
-       var num = 20;
-       var end = false;
-       var getting = false;
-
-       function nextPage() {
-           if (end || getting) {
-               return;
-           }
-           page += 1;
-           console.log(&apos;/user/listrecommend&apos;, &apos;page&apos;, page, &apos;end&apos;, end);
-           getting = true;
-           $.ajax({
-               url: &apos;/user/listrecommend?page=&apos; + page,
-               method: &apos;get&apos;,
-               success: function (data) {
-                   if (data.code != 0) {
-                       console.log(&apos;/user/listrecommend error&apos;, data.code);
-                       return;
-                   }
-                   console.log(&apos;/user/listrecommend&apos;, data.list.length);
-                   end = data.list.length &lt; num ? true : false;
-                   $.each(data.list, function (idx, val) {
-                       var el = &apos;&lt;tr class=&quot;cont&quot;&gt; \
-                                       &lt;td&gt;&apos; + val.uid + &apos;&lt;/td&gt; \
-                                       &lt;td&gt;&apos; + val.name + &apos;&lt;/td&gt; \
-                                       &lt;td&gt;&apos; + val.created_at + &apos;&lt;/td&gt; \
-                                     &lt;/tr&gt;&apos;;
-                       $(&apos;#tbody-recommend&apos;).append(el);
-                       setTimeout(function () {
-                           myScroll.refresh();
-                       }, 1000)
-                   });
-               }
-           });
-
-           getting = false;
-       }
-
-       nextPage();
-   });
-</code></pre><hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/09/18/iscroll/" data-id="cj7lixcl9000354v82471dcso" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/15/git/" class="article-date">
-  <time datetime="2016-09-15T02:38:53.000Z" itemprop="datePublished">2016-09-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/15/git/">git</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="git的命令行"><a href="#git的命令行" class="headerlink" title="git的命令行"></a>git的命令行</h3><hr>
-<pre><code>git checkout -b user   创建并切换user分支
-git branch user        创建分支
-git checkout user      切换分支
-------------------------------------------
-git last               查看最后一条记录
-git log                用于查看历史纪录
-------------------------------------------
-解决冲突
-git status             查看状态 git会告诉我们冲突的文件
-git checkout -b aa     创建一个新的分支 并切换
-
-git add aa.html        提交
-git commit -m &apos;1.0&apos;
-git push   
-git branch -d aa
-git log                查看分支的合并情况
-
-git br -d aa           删除aa分支  
--------------------------------------------
-git pull               抓取代码
-</code></pre><hr>
-<h3 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h3><hr>
-<pre><code>查看远程库信息，使用git remote -v；
-
-本地新建的分支如果不推送到远程，对其他人就是不可见的；
-
-从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
-
-在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
-
-建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
-
-从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
-</code></pre><hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/09/15/git/" data-id="cj7lixcko000054v81nhmiw4j" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2017/09/27/touch/" data-id="cj82c3oyt0003tkv8imk6nozx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -331,8 +126,8 @@ git pull               抓取代码
   
     <article id="post-ajax" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/14/ajax/" class="article-date">
-  <time datetime="2016-09-14T08:56:55.000Z" itemprop="datePublished">2016-09-14</time>
+    <a href="/2017/09/27/ajax/" class="article-date">
+  <time datetime="2017-09-27T01:10:04.510Z" itemprop="datePublished">2017-09-27</time>
 </a>
     
   </div>
@@ -343,7 +138,7 @@ git pull               抓取代码
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/14/ajax/">ajax</a>
+      <a class="article-title" href="/2017/09/27/ajax/">ajax</a>
     </h1>
   
 
@@ -488,7 +283,78 @@ $(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/09/14/ajax/" data-id="cj7lixcl8000254v8tup0gynr" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2017/09/27/ajax/" data-id="cj82c3oyt0001tkv8rwfp2akr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/27/git/" class="article-date">
+  <time datetime="2017-09-27T01:10:04.510Z" itemprop="datePublished">2017-09-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/27/git/">git</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="git的命令行"><a href="#git的命令行" class="headerlink" title="git的命令行"></a>git的命令行</h3><hr>
+<pre><code>git checkout -b user   创建并切换user分支
+git branch user        创建分支
+git checkout user      切换分支
+------------------------------------------
+git last               查看最后一条记录
+git log                用于查看历史纪录
+------------------------------------------
+解决冲突
+git status             查看状态 git会告诉我们冲突的文件
+git checkout -b aa     创建一个新的分支 并切换
+
+git add aa.html        提交
+git commit -m &apos;1.0&apos;
+git push   
+git branch -d aa
+git log                查看分支的合并情况
+
+git br -d aa           删除aa分支  
+-------------------------------------------
+git pull               抓取代码
+</code></pre><hr>
+<h3 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h3><hr>
+<pre><code>查看远程库信息，使用git remote -v；
+
+本地新建的分支如果不推送到远程，对其他人就是不可见的；
+
+从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+
+在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+
+建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+
+从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://raining-blog.com/2017/09/27/git/" data-id="cj82c3oyt0002tkv8audv6mdj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -500,8 +366,8 @@ $(function () {
   
     <article id="post-welcome" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/08/08/welcome/" class="article-date">
-  <time datetime="2016-08-08T09:34:09.000Z" itemprop="datePublished">2016-08-08</time>
+    <a href="/2017/09/27/welcome/" class="article-date">
+  <time datetime="2017-09-27T01:10:04.510Z" itemprop="datePublished">2017-09-27</time>
 </a>
     
   </div>
@@ -512,7 +378,7 @@ $(function () {
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/08/welcome/">Welcome</a>
+      <a class="article-title" href="/2017/09/27/welcome/">Welcome</a>
     </h1>
   
 
@@ -524,7 +390,141 @@ $(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://raining-blog.com/2016/08/08/welcome/" data-id="cj7lixcli000554v8650inqua" class="article-share-link">Share</a>
+      <a data-url="http://raining-blog.com/2017/09/27/welcome/" data-id="cj82c3oz90005tkv8vx8utkb7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iscroll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/27/iscroll/" class="article-date">
+  <time datetime="2017-09-27T01:10:04.495Z" itemprop="datePublished">2017-09-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/27/iscroll/">iscroll</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="iscroll的使用"><a href="#iscroll的使用" class="headerlink" title="iscroll的使用"></a>iscroll的使用</h2><h4 id="https-github-com-cubiq-iscroll"><a href="#https-github-com-cubiq-iscroll" class="headerlink" title="https://github.com/cubiq/iscroll"></a><a href="https://github.com/cubiq/iscroll" target="_blank" rel="external">https://github.com/cubiq/iscroll</a></h4><hr>
+<pre><code>$(function () {
+       ----初始化----
+       var myScroll = new IScroll(&apos;#div-iscroll&apos;, {
+           mouseWheel: true,   监听鼠标滚轮事件
+           scrollbars: true,   显示滚动条 激活该事件
+           probeType: 2,   总是执行scroll事件，除了动量和反弹之外  探针行为
+           preventDefault: false   禁止默认行为
+       });
+
+       ----自定义滚轮事件----
+           每次内容停止滚动时，代码执行
+       myScroll.on(&quot;scrollEnd&quot;, function () {
+           console.log(&apos;y:&apos;, this.y, this.distY, this.wrapperHeight, this.pointY);
+           if (this.distY &lt; 0) {
+               nextPage();
+           }
+       });
+       var page = 0;
+       var num = 20;
+       var end = false;
+       var getting = false;
+
+       function nextPage() {
+           if (end || getting) {
+               return;
+           }
+           page += 1;
+           console.log(&apos;/user/listrecommend&apos;, &apos;page&apos;, page, &apos;end&apos;, end);
+           getting = true;
+           $.ajax({
+               url: &apos;/user/listrecommend?page=&apos; + page,
+               method: &apos;get&apos;,
+               success: function (data) {
+                   if (data.code != 0) {
+                       console.log(&apos;/user/listrecommend error&apos;, data.code);
+                       return;
+                   }
+                   console.log(&apos;/user/listrecommend&apos;, data.list.length);
+                   end = data.list.length &lt; num ? true : false;
+                   $.each(data.list, function (idx, val) {
+                       var el = &apos;&lt;tr class=&quot;cont&quot;&gt; \
+                                       &lt;td&gt;&apos; + val.uid + &apos;&lt;/td&gt; \
+                                       &lt;td&gt;&apos; + val.name + &apos;&lt;/td&gt; \
+                                       &lt;td&gt;&apos; + val.created_at + &apos;&lt;/td&gt; \
+                                     &lt;/tr&gt;&apos;;
+                       $(&apos;#tbody-recommend&apos;).append(el);
+                       setTimeout(function () {
+                           myScroll.refresh();
+                       }, 1000)
+                   });
+               }
+           });
+
+           getting = false;
+       }
+
+       nextPage();
+   });
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://raining-blog.com/2017/09/27/iscroll/" data-id="cj82c3oye0000tkv8hemtpn93" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-swiper" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/27/swiper/" class="article-date">
+  <time datetime="2017-09-27T01:10:04.479Z" itemprop="datePublished">2017-09-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/27/swiper/">swiper</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Swiper的使用"><a href="#Swiper的使用" class="headerlink" title="Swiper的使用"></a>Swiper的使用</h2><h3 id="http-idangero-us-swiper-demos"><a href="#http-idangero-us-swiper-demos" class="headerlink" title="http://idangero.us/swiper/demos/"></a><a href="http://idangero.us/swiper/demos/" target="_blank" rel="external">http://idangero.us/swiper/demos/</a></h3><h4 id="引用两个文件"><a href="#引用两个文件" class="headerlink" title="引用两个文件"></a>引用两个文件</h4><pre><code>swiper.min.css  
+swiper.min.js
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://raining-blog.com/2017/09/27/swiper/" data-id="cj82c3oyt0004tkv8myab1tmm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -551,7 +551,7 @@ $(function () {
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li></ul>
     </div>
   </div>
 
@@ -564,23 +564,23 @@ $(function () {
       <ul>
         
           <li>
-            <a href="/2016/09/22/touch/">touch</a>
+            <a href="/2017/09/27/touch/">touch</a>
           </li>
         
           <li>
-            <a href="/2016/09/20/swiper/">swiper</a>
+            <a href="/2017/09/27/ajax/">ajax</a>
           </li>
         
           <li>
-            <a href="/2016/09/18/iscroll/">iscroll</a>
+            <a href="/2017/09/27/git/">git</a>
           </li>
         
           <li>
-            <a href="/2016/09/15/git/">git</a>
+            <a href="/2017/09/27/welcome/">Welcome</a>
           </li>
         
           <li>
-            <a href="/2016/09/14/ajax/">ajax</a>
+            <a href="/2017/09/27/iscroll/">iscroll</a>
           </li>
         
       </ul>
